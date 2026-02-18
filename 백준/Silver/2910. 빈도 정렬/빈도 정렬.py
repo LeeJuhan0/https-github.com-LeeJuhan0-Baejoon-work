@@ -1,8 +1,5 @@
-from collections import deque
-
 n, m = map(int, input().split())
 nums = list(map(int, input().split()))
-q = deque()
 d = {}
 answer = []
 
@@ -11,8 +8,6 @@ for i in nums :
         d[i] += 1
     except:
         d[i] = 1
-        q.append(i)
-
 
 while len(d) != 0 :
     for _ in range(d[max(d, key=d.get)]):

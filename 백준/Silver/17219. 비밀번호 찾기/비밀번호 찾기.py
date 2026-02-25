@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 n, m = map(int, input().split())
 addresses = {}
 for i in range(n):
@@ -5,5 +7,5 @@ for i in range(n):
     addresses[k] = v
 
 for i in range(m):
-    target = input()
+    target = input().strip()
     print(addresses[target])

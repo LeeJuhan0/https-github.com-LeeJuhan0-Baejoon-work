@@ -1,5 +1,9 @@
-set @hour = -1;
-select (@hour := @hour + 1) as 'HOUR'  , 
-        (select count(*) from animal_outs where hour(datetime) = @hour)
-from animal_outs
-where @hour < 23
+with recursive hours as (
+    select 0 as hour
+    union all
+    select hour + 1 from hours where hour < 23
+)
+select h.hour, count(a.datetime)
+from hours h
+left join animal_outs a on hour(a.datetime) = h.hour
+group by h.hour
